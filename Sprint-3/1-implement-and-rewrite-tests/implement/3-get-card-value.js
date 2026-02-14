@@ -34,7 +34,13 @@ function getCardValue(card) {
   if (rank === "10" || rank === "J" || rank === "Q" || rank === "K") return 10;
 
   const rankNum = Number(rank);
-  if (!Number.isNaN(rankNum) && rankNum >= 2 && rankNum < 10) {
+  if (
+    !Number.isNaN(rankNum) &&
+    Number.isInteger(rankNum) &&
+    rankNum >= 2 &&
+    rankNum < 10 &&
+    rank === rankNum.toString()
+  ) {
     return rankNum;
   }
 
