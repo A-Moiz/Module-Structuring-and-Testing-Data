@@ -33,6 +33,8 @@ test(`Should throw an error for Invalid card rank for invalid cards`, () => {
   expect(() => getCardValue("1♠")).toThrow("Invalid card rank");
   expect(() => getCardValue("11♥")).toThrow("Invalid card rank");
   expect(() => getCardValue("Z♦")).toThrow("Invalid card rank");
+  expect(() => getCardValue("0x02♠")).toThrow("Invalid card rank");
+  expect(() => getCardValue("3.1416♠")).toThrow("Invalid card rank");
 });
 
 // Case 5: Invalid suit character

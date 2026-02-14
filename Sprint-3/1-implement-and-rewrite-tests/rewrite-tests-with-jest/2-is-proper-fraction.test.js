@@ -33,10 +33,6 @@ test(`should return false for negative numerator`, () => {
   expect(isProperFraction(-5, 2)).toEqual(false);
 });
 
-test(`should return false for negative numerator`, () => {
-  expect(isProperFraction(-5, 2)).toEqual(false);
-});
-
 test(`should return true for negative numerator and negative denominator where numerator is smaller.`, () => {
   expect(isProperFraction(-1, -2)).toEqual(true);
 });
