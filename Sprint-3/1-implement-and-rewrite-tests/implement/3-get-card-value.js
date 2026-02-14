@@ -22,16 +22,23 @@
 // execute the code to ensure all tests pass.
 
 function getCardValue(card) {
-  const rank = card.slice(0, card.length - 1);
-  if (rank === "A") {
-    return 11;
-  } else if (Number(rank) >= 2 && Number(rank) < 10) {
-    return Number(rank);
-  } else if (rank === "10" || rank === "J" || rank === "Q" || rank === "K") {
-    return 10;
-  } else {
-    return "Invalid card rank";
+  const rank = card.slice(0, -1);
+  const lastChar = card.slice(-1);
+  const validSuits = ["♠", "♥", "♦", "♣"];
+
+  if (!validSuits.includes(lastChar)) {
+    throw new Error("Invalid card suit");
   }
+
+  if (rank === "A") return 11;
+  if (rank === "10" || rank === "J" || rank === "Q" || rank === "K") return 10;
+
+  const rankNum = Number(rank);
+  if (!Number.isNaN(rankNum) && rankNum >= 2 && rankNum < 10) {
+    return rankNum;
+  }
+
+  throw new Error("Invalid card rank");
 }
 
 // The line below allows us to load the getCardValue function into tests in other files.
@@ -76,5 +83,8 @@ assertEquals(aceofClubs, 11);
 // Given a card with an invalid rank (neither a number nor a recognized face card),
 // When the function is called with such a card,
 // Then it should throw an error indicating "Invalid card rank."
-const invalidCard = getCardValue("1♠");
-assertEquals(invalidCard, "Invalid card rank");
+try {
+  getCardValue("1♠");
+} catch (error) {
+  assertEquals(error.message, "Invalid card rank");
+}
