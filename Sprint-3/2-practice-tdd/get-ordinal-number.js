@@ -1,14 +1,15 @@
 function getOrdinalNumber(num) {
-  let stringNum = num.toString();
-  let lastDigit = stringNum[stringNum.length - 1];
-  if (lastDigit === "1" && num % 100 !== 11) {
-    return stringNum + "st";
-  } else if (lastDigit === "2" && num % 100 !== 12) {
-    return stringNum + "nd";
-  } else if (lastDigit === "3" && num % 100 !== 13) {
-    return stringNum + "rd";
+  const lastDigit = num % 10;
+  const lastTwoDigits = num % 100;
+
+  if (lastDigit === 1 && lastTwoDigits !== 11) {
+    return num + "st";
+  } else if (lastDigit === 2 && lastTwoDigits !== 12) {
+    return num + "nd";
+  } else if (lastDigit === 3 && lastTwoDigits !== 13) {
+    return num + "rd";
   } else {
-    return stringNum + "th";
+    return num + "th";
   }
 }
 

@@ -1,12 +1,9 @@
 function repeatStr(str, count) {
-  if (count === 0) {
-    return "";
-  } else if (count > 0) {
-    return str.repeat(count);
-  } else {
+  if (count < 0 || !Number.isInteger(count)) {
     throw new Error("Count must be a non-negative integer");
   }
-  return "";
+
+  return count > 0 ? str.repeat(count) : "";
 }
 
 module.exports = repeatStr;

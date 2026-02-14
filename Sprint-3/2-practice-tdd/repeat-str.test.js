@@ -49,3 +49,11 @@ test("should throw an error when count is negative", () => {
     repeatStr(str, count);
   }).toThrow("Count must be a non-negative integer");
 });
+
+test("should throw an error when count is not a number", () => {
+  const str = "error";
+  const count = "-2";
+  expect(() => {
+    repeatStr(str, count);
+  }).toThrow("Count must be a non-negative integer");
+});
